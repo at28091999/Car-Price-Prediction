@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Price Prediction</title>
+</head>
+<body>
+    <h2>Car Price Predictor</h2>
+    <form action="/predict" method="post">
+        <label>Car Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Company:</label><br>
+        <input type="text" name="company" required><br><br>
+
+        <label>Year:</label><br>
+        <input type="number" name="year" required><br><br>
+
+        <label>Kilometers Driven:</label><br>
+        <input type="number" name="kms_driven" required><br><br>
+
+        <label>Fuel Type:</label><br>
+        <select name="fuel_type" required>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="CNG">CNG</option>
+        </select><br><br>
+
+        <input type="submit" value="Predict Price">
+    </form>
+
+    {% if prediction %}
+        <h3>Predicted Price: ₹{{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
