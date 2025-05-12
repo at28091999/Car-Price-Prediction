@@ -7,7 +7,7 @@
     <h2>Predict Car Price</h2>
 
     <form method="POST">
-        <!-- Company -->
+
         <label for="company">Company:</label>
         <select name="company" onchange="this.form.submit()" required>
             <option disabled selected>Select</option>
@@ -16,7 +16,6 @@
             {% endfor %}
         </select><br><br>
 
-        <!-- Car Name -->
         <label for="name">Car Name:</label>
         <select name="name" required>
             <option disabled selected>Select</option>
@@ -25,7 +24,6 @@
             {% endfor %}
         </select><br><br>
 
-        <!-- Year -->
         <label for="year">Year:</label>
         <select name="year" required>
             <option disabled selected>Select</option>
@@ -34,7 +32,6 @@
             {% endfor %}
         </select><br><br>
 
-        <!-- Fuel Type -->
         <label for="fuel_type">Fuel Type:</label>
         <select name="fuel_type" required>
             <option disabled selected>Select</option>
@@ -43,7 +40,6 @@
             {% endfor %}
         </select><br><br>
 
-        <!-- Kilometers Driven -->
         <label for="kms_driven">Kilometers Driven:</label>
         <input type="range" name="kms_driven" min="1000" max="200000" step="500" value="10000"
                oninput="this.nextElementSibling.value = this.value">
@@ -53,7 +49,7 @@
     </form>
 
     {% if prediction %}
-    <h3>Predicted Price: ₹ {{ prediction }} Lakhs</h3>
+    <h3>Predicted Price: ₹ {{ prediction }}</h3>
     {% endif %}
 </body>
 </html>
