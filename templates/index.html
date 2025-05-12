@@ -6,41 +6,50 @@
 <body>
     <h2>Predict Car Price</h2>
 
-    <form action="/predict" method="POST">
-        <label for="name">Car Name:</label>
-        <select name="name">
-            {% for n in car_names %}
-            <option value="{{ n }}">{{ n }}</option>
-            {% endfor %}
-        </select><br><br>
-
+    <form method="POST">
+        <!-- Company -->
         <label for="company">Company:</label>
-        <select name="company">
+        <select name="company" onchange="this.form.submit()" required>
+            <option disabled selected>Select</option>
             {% for c in companies %}
-            <option value="{{ c }}">{{ c }}</option>
+            <option value="{{ c }}" {% if selected_company == c %}selected{% endif %}>{{ c }}</option>
             {% endfor %}
         </select><br><br>
 
+        <!-- Car Name -->
+        <label for="name">Car Name:</label>
+        <select name="name" required>
+            <option disabled selected>Select</option>
+            {% for name in car_names %}
+            <option value="{{ name }}" {% if selected_name == name %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Year -->
         <label for="year">Year:</label>
-        <select name="year">
+        <select name="year" required>
+            <option disabled selected>Select</option>
             {% for y in years %}
             <option value="{{ y }}">{{ y }}</option>
             {% endfor %}
         </select><br><br>
 
+        <!-- Fuel Type -->
         <label for="fuel_type">Fuel Type:</label>
-        <select name="fuel_type">
+        <select name="fuel_type" required>
+            <option disabled selected>Select</option>
             {% for f in fuel_types %}
             <option value="{{ f }}">{{ f }}</option>
             {% endfor %}
         </select><br><br>
 
+        <!-- Kilometers Driven -->
         <label for="kms_driven">Kilometers Driven:</label>
         <input type="range" name="kms_driven" min="1000" max="200000" step="500" value="10000"
-            oninput="this.nextElementSibling.value = this.value">
+               oninput="this.nextElementSibling.value = this.value">
         <output>10000</output><br><br>
 
-        <input type="submit" value="Predict Price">
+        <button type="submit" name="predict">Predict Price</button>
     </form>
 
     {% if prediction %}
