@@ -4,32 +4,44 @@
     <title>Car Price Prediction</title>
 </head>
 <body>
-    <h2>Car Price Predictor</h2>
-    <form action="/predict" method="post">
-        <label>Car Name:</label><br>
-        <input type="text" name="name" required><br><br>
+    <h1>Car Price Prediction</h1>
+    <form method="POST" action="/predict">
+        <label>Car Name:</label>
+        <select name="name">
+            {% for name in car_names %}
+            <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+        </select><br>
 
-        <label>Company:</label><br>
-        <input type="text" name="company" required><br><br>
+        <label>Company:</label>
+        <select name="company">
+            {% for company in companies %}
+            <option value="{{ company }}">{{ company }}</option>
+            {% endfor %}
+        </select><br>
 
-        <label>Year:</label><br>
-        <input type="number" name="year" required><br><br>
+        <label>Year:</label>
+        <select name="year">
+            {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select><br>
 
-        <label>Kilometers Driven:</label><br>
-        <input type="number" name="kms_driven" required><br><br>
+        <label>KMs Driven:</label>
+        <input type="range" name="kms_driven" min="1000" max="200000" step="1000" value="50000"><br>
 
-        <label>Fuel Type:</label><br>
-        <select name="fuel_type" required>
-            <option value="Petrol">Petrol</option>
-            <option value="Diesel">Diesel</option>
-            <option value="CNG">CNG</option>
+        <label>Fuel Type:</label>
+        <select name="fuel_type">
+            {% for fuel in fuel_types %}
+            <option value="{{ fuel }}">{{ fuel }}</option>
+            {% endfor %}
         </select><br><br>
 
-        <input type="submit" value="Predict Price">
+        <input type="submit" value="Predict">
     </form>
 
     {% if prediction %}
-        <h3>Predicted Price: ₹{{ prediction }}</h3>
+        <h2>Estimated Price: ₹ {{ prediction }} lakhs</h2>
     {% endif %}
 </body>
 </html>
