@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Car Price Prediction</title>
+    <title>Car Price Predictor</title>
 </head>
 <body>
-    <h1>Car Price Prediction</h1>
-    <form method="POST" action="/predict">
-        <label>Car Name:</label>
+    <h2>Predict Car Price</h2>
+
+    <form action="/predict" method="POST">
+        <label for="name">Car Name:</label>
         <select name="name">
-            {% for name in car_names %}
-            <option value="{{ name }}">{{ name }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label>Company:</label>
-        <select name="company">
-            {% for company in companies %}
-            <option value="{{ company }}">{{ company }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label>Year:</label>
-        <select name="year">
-            {% for year in years %}
-            <option value="{{ year }}">{{ year }}</option>
-            {% endfor %}
-        </select><br>
-
-        <label>KMs Driven:</label>
-        <input type="range" name="kms_driven" min="1000" max="200000" step="1000" value="50000"><br>
-
-        <label>Fuel Type:</label>
-        <select name="fuel_type">
-            {% for fuel in fuel_types %}
-            <option value="{{ fuel }}">{{ fuel }}</option>
+            {% for n in car_names %}
+            <option value="{{ n }}">{{ n }}</option>
             {% endfor %}
         </select><br><br>
 
-        <input type="submit" value="Predict">
+        <label for="company">Company:</label>
+        <select name="company">
+            {% for c in companies %}
+            <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="year">Year:</label>
+        <select name="year">
+            {% for y in years %}
+            <option value="{{ y }}">{{ y }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="fuel_type">Fuel Type:</label>
+        <select name="fuel_type">
+            {% for f in fuel_types %}
+            <option value="{{ f }}">{{ f }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="kms_driven">Kilometers Driven:</label>
+        <input type="range" name="kms_driven" min="1000" max="200000" step="500" value="10000"
+            oninput="this.nextElementSibling.value = this.value">
+        <output>10000</output><br><br>
+
+        <input type="submit" value="Predict Price">
     </form>
 
     {% if prediction %}
-        <h2>Estimated Price: ₹ {{ prediction }} lakhs</h2>
+    <h3>Predicted Price: ₹ {{ prediction }} Lakhs</h3>
     {% endif %}
 </body>
 </html>
